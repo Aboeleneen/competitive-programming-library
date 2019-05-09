@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1543190010 source:d:\competitive programming\training\topics\algebra\numberbases\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+
