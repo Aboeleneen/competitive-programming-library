@@ -34,6 +34,25 @@ void targan(ll node){
         comps.push_back(component);
     }
 }
+
+void bridges(ll node , ll parent){
+    lowlink[node]=dfs[node]=num++;
+    for(ll i=0;i<adjlist[node].size();i++){
+        ll child = adjlist[node][i];
+        if(dfs[child]==-1){
+            bridges(child,node);
+            lowlink[node]=min(lowlink[node],lowlink[child]);
+            // if(lowlink[child]==dfs[child])
+            // if(lowlink[child]>=dfs[node])--> articulation point
+        }else if (child!=parent){
+            lowlink[node]=min(lowlink[node],dfs[child]);
+        }
+    }
+    if(lowlink[node]==dfs[node]&&parent!=-1){
+        cout << "bridge "  << parent << " " << node << endl;
+    }
+
+}
 int main()
 {
 
