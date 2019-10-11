@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1570801897 source:d:\competitive programming\training\implemention\kmp(string matching)\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+
