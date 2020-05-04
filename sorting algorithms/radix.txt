@@ -1,0 +1,20 @@
+ void counting_sort_digit(vector<int> &nums , int mx , int exp){
+        vector<int> count(mx+1,0);
+        for(int n:nums) count[(n/exp)%10]++;
+        for(int i=1;i<=mx;i++) count[i]+=count[i-1];
+        vector<int> output(nums.size(),0);
+        for(int i=0;i<nums.size() ;i++ ){
+            output[count[(nums[i]/exp)%10]-1] = nums[i];
+            count[(nums[i]/exp)%10]--;
+        }
+        for(int i=0;i<nums.size();i++){
+            nums[i]=output[i];
+        }
+    }
+    void radix_sort(vector<int>&nums){
+        int mx = *max_element(nums.begin() , nums.end());
+        for(int exp = 1;mx/exp > 0 ; exp*=10){
+            counting_sort_digit(nums,9,exp);
+        }
+        
+    }

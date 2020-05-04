@@ -1,0 +1,10 @@
+vector<int> heap_sort(vector<int>&nums){
+        priority_queue<int , vector<int> ,std::greater<int>> heap;
+        for(int n:nums) heap.push(n);
+        vector<int> res;
+        while(!heap.empty()){
+            res.push_back(heap.top());
+            heap.pop();
+        }
+        return res;
+    }

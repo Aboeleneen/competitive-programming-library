@@ -1,59 +1,65 @@
-#include <iostream>
-#include<bits/stdc++.h>
-#define ll long long
-#define OO 1e9+7
-using namespace std;
-struct edge{
-    ll weight , start , finish ;
-};
-vector<ll> dist;
-vector<edge> edges;
-bool bellmanFord(ll src, ll n){
-    dist = vector<ll>(n,OO);
-    dist[src]=0;
-    for(ll i=0;i<n-1;i++){
-        bool noChange = true;
-        for(ll j=0;j<edges.size();j++){
-            // relaxation step
-            if(dist[edges[j].start]+edges[j].weight<dist[edges[j].finish]){
-                dist[edges[j].finish] = dist[edges[j].start]+edges[j].weight;
-                noChange=false;
-            }
-        }
-        if(noChange) return true;
-    }
-    // check if there is negative cycle
-     bool noChange = true ;
-      for(ll j=0;j<edges.size();j++){
-            // relaxation step
-            if(dist[edges[j].start]+edges[j].weight<dist[edges[j].finish]){
-                dist[edges[j].finish] = dist[edges[j].start]+edges[j].weight;
-                noChange=false;
-            }
-    }
-    return noChange;
+E 300 05 00  // load 5 in memory loaction 300
+A 100  // create machine executable code in memory begining at 100
+MOV AX,1 // load 1 in register AX
+MOV CX,[300] // load the value in memory loaction 300 in register CX
+MUL CX   // (DX AX) = AX * CX
+LOOP 107 // go to memory location 107 and loop untill CX equal zero
+INT 3 // interput 
 
-}
-int main()
-{
-    ll n , m ;
-    cin >> n >> m;
-    edges = vector<edge>(m);
-    for(ll i=0;i<m;i++){
-        ll a , b ,c ;
-        cin >> a >> b >> c ;
-        a--;
-        b--;
-        edge t;
-        t.start=a;
-        t.finish=b;
-        t.weight=c;
-        edges.push_back(t);
-    }
-    cout << bellmanFord(0,n);
-    for(ll i=0;i<n;i++){
-        cout << i+1 << " --> " << dist[i] << endl;
-    }
 
-    return 0;
-}
+// problem two
+E 400 0A 00 // load 0A in memory location 400
+A 100  //  create machine executable code in memory begining at 100
+MOV AX,0  // load zero in register AX
+MOV BX,[400] // load the value in memory location 400 in register BX
+CMP CX,BX // compare the value in CX with the value in BX
+JA 112 // if CX greater than BX jump to memory loaction 112
+ADD AX,CX // add the value in CX to AX
+ADD CX,2  // add two the value in CX
+JMP 107 // jump to memory location 107
+INT 3 // interput--> end of thr program
+
+A 200  // start
+MOV CX,1 // load one in register cx
+JMP 100 // jump to memory location 100
+
+A 300
+MOV CX,0 // load zero in register cx
+JMP 100 // jump to memory location 100
+
+
+
+
+//problem three 
+E 300 10 20 40 50 80 90
+A 100
+MOV AX,0
+MOV CX,6
+MOV BX,300
+MOV DL,[BX]
+CMP DX,80 
+JGE 118
+CMP DX,20
+JLE 118
+ADD AL,DL
+INC BX
+LOOP 109
+INT 3
+
+//problem four 
+E 300 32 05
+A 100
+MOV DL,[300]
+MOV CL,[301]
+MOV BX,200
+CMP CX,0
+JE 115
+MOV [BX],DL
+INC BX
+LOOP 
+INT 3
+
+
+
+
+

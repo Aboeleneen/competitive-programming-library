@@ -2,6 +2,7 @@
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
+// hint : we can use it with palindrome (longest palindrome prefix or suffix)
 vector<ll> lps;
 void construct_lps(string pattern){
     ll m  = pattern.size();
